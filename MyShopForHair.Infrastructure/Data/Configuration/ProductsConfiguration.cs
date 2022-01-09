@@ -14,21 +14,26 @@ namespace MyShopForHair.Infrastructure.Data.Configuration
         public void Configure(EntityTypeBuilder<Products> builder)
         {
             builder
-               .HasKey(p => p.Id);
+            .HasKey(p => p.Id);
 
             builder
-             .Property(p => p.Name)
-             .HasMaxLength(50)
-             .IsRequired();
+            .Property(p => p.Name)
+            .HasMaxLength(50)
+            .IsRequired();
 
             builder
-                .Property(p => p.Description)
-                .HasMaxLength(100)
-                .IsRequired(false);
+            .Property(p => p.Description)
+            .HasMaxLength(100)
+            .IsRequired(false);
 
             builder
-              .Property(p => p.BrandId)
-              .IsRequired();
+            .Property(p => p.BrandId)
+            .IsRequired();
+
+            builder
+            .Property(p => p.Price)
+            .HasColumnType("money")
+            .IsRequired();
         }
     }
 }

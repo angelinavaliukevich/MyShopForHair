@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyShopForHair.Infrastructure.Data;
 
 namespace MyShopForHair.Infrastructure.Migrations
 {
     [DbContext(typeof(CatalogDbContext))]
-    partial class CatalogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211223185301_Fix_GroupId_name")]
+    partial class Fix_GroupId_name
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,83 +50,6 @@ namespace MyShopForHair.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Brands");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Davines"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Lador"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "CHI"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "TIGI"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Global Keratin"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Kerastase"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Loreal"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Olaplex"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "ORIBE"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "Matrix"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Name = "Ollin"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Name = "Batiste"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Name = "Kapous"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Name = "K18"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Name = "Moroccanoil"
-                        });
                 });
 
             modelBuilder.Entity("MyShopForHair.Core.Entities.Criteria", b =>

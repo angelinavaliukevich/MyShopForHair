@@ -23,7 +23,23 @@ namespace MyShopForHair.Infrastructure.Data
             new ProductsConfiguration().Configure(modelBuilder.Entity<Products>());
             new CriteriaConfiguration().Configure(modelBuilder.Entity<Criteria>());
             new BrandConfiguration().Configure(modelBuilder.Entity<Brand>());
+            modelBuilder.Entity<Brand>().HasData(
+                new Brand { Id = 1, Name = "Davines" },
+                new Brand { Id = 2, Name = "Lador" },
+                new Brand { Id = 3, Name = "CHI" },
+                new Brand { Id = 4, Name = "TIGI" },
+                new Brand { Id = 5, Name = "Global Keratin" },
+                new Brand { Id = 6, Name = "Kerastase" },
+                new Brand { Id = 7, Name = "Loreal" },
+                new Brand { Id = 8, Name = "Olaplex" },
+                new Brand { Id = 9, Name = "ORIBE" },
+                new Brand { Id = 10, Name = "Matrix" },
+                new Brand { Id = 11, Name = "Ollin" },
+                new Brand { Id = 12, Name = "Batiste" },
+                new Brand { Id = 13, Name = "Kapous" },
+                new Brand { Id = 14, Name = "K18" },
+                new Brand { Id = 15, Name = "Moroccanoil" }
+                );
         }
-
     }
 }

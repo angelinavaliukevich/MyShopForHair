@@ -14,16 +14,16 @@ namespace MyShopForHair.Infrastructure.Data.Configuration
         public void Configure(EntityTypeBuilder<Criteria> builder)
         {
             builder
-                .HasKey(p => p.Id);
+            .HasKey(p => p.Id);
 
             builder
-             .Property(p => p.Name)
-             .HasMaxLength(50)
-             .IsRequired();
+            .Property(p => p.Name)
+            .HasMaxLength(50)
+            .IsRequired();
 
             builder
-              .Property(p => p.IdGroup)
-              .IsRequired();
+            .Property(p => p.GroupId)
+            .IsRequired();
         }
     }
 }
