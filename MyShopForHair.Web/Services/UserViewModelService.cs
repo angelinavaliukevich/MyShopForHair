@@ -13,13 +13,11 @@ namespace MyShopForHair.Web.Services
     public class UserViewModelService : IUserViewModelService
     {
         private readonly IUserService userService;
-        private readonly IPasswordHasher passwordHasher;
         private readonly IRepository<Role> roleRepository;
 
-        public UserViewModelService(IUserService userService, IPasswordHasher passwordHasher, IRepository<Role> roleRepository)
+        public UserViewModelService(IUserService userService,  IRepository<Role> roleRepository)
         {
             this.userService = userService;
-            this.passwordHasher = passwordHasher;
             this.roleRepository = roleRepository;
         }
         public int Add(UserViewModel userViewModel)
@@ -34,8 +32,7 @@ namespace MyShopForHair.Web.Services
 
         public UserViewModel GetById(int value)
         {
-            var user = userService.Get(id);
-            return user != null ? ConvertToViewModel(user) : null;
+            throw new NotImplementedException();
         }
 
         public UserViewModel GetEmpty()
@@ -44,14 +41,13 @@ namespace MyShopForHair.Web.Services
         }
         private User ConvertToModel(UserViewModel userViewModel)
         {
-            var salt = passwordHasher.GenerateSalt();
+            
 
             return new User
             {
                 Id = userViewModel.Id.HasValue ? userViewModel.Id.Value : 0,
                 Name = userViewModel.Name,
                 Login = userViewModel.Login,
-                Password = passwordHasher.Hash(userViewModel.Password, salt),
             };
         }
 

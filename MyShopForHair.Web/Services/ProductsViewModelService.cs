@@ -22,7 +22,6 @@ namespace MyShopForHair.Web.Services
         {
             return productsService.Add(ConvertToModel(productsViewModel));
         }
-
         public void Edit(ProductsViewModel productsViewModel)
         {
             throw new NotImplementedException();
@@ -36,31 +35,30 @@ namespace MyShopForHair.Web.Services
         public ProductsViewModel GetById(int id)
         {
             return ConvertToViewModel(new Products());
+        }
 
-             Products ConvertToModel(ProductsViewModel productsViewModel)
+        private Products ConvertToModel(ProductsViewModel productsViewModel)
+        {
+            return new Products
             {
-                return new Products
-                {
-                    Id = productsViewModel.Id.HasValue ? productsViewModel.Id.Value : 0,
-                    Name = productsViewModel.Name,
-                    Description = productsViewModel.Description,
-                    Price = productsViewModel.Price,
-                    BrandId = productsViewModel.BrandId
-                };
-            }
+                Id = productsViewModel.Id.HasValue ? productsViewModel.Id.Value : 0,
+                Name = productsViewModel.Name,
+                Description = productsViewModel.Description,
+                Price = productsViewModel.Price,
+                BrandId = productsViewModel.BrandId
+            };
+        }
 
-             ProductsViewModel ConvertToViewModel(Products products)
+        private ProductsViewModel ConvertToViewModel(Products products)
+        {
+            return new ProductsViewModel
             {
-                return new ProductsViewModel
-                {
-                    Id = products.Id,
-                    Name = products.Name,
-                    Description = products.Description,
-                    Price = products.Price,
-                    BrandId = products.BrandId
-                   
-                };
-            }
+                Id = products.Id,
+                Name = products.Name,
+                Description = products.Description,
+                Price = products.Price,
+                BrandId = products.BrandId
+            };
         }
     }
 }

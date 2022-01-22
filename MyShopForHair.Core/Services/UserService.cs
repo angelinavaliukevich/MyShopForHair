@@ -33,7 +33,7 @@ namespace MyShopForHair.Core.Services
 
         public User Get(string login)
         {
-            return userRepository.Get(new UserByLoginSpecification(login));
+            throw new NotImplementedException();
         }
     }
 }

@@ -24,7 +24,12 @@ namespace MyShopForHair.Core.Services
 
         public void Edit(Brand brand)
         {
-            
+            brandRepository.Update(brand);   
+        }
+
+        public IEnumerable<object> List()
+        {
+            throw new NotImplementedException();
         }
     }
 }

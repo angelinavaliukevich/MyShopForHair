@@ -20,8 +20,7 @@ namespace MyShopForHair.Web.Models
         [HiddenInput]
         public int? GroupId { get; set; }
 
-        [Required]
-        [Range(1, 255)]
+        [Required,Range(1, 255)]
         public Group Group { get; set; }
         public ICollection<Products> Products { get; set; }
     }

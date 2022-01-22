@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyShopForHair.Web.Interfaces
 {
-    interface IUserViewModelService
+   public interface IUserViewModelService
     {
         int Add(UserViewModel userViewModel);
         UserViewModel GetById(int value);

@@ -26,7 +26,7 @@ namespace MyShopForHair.Web.Models
         [Required, DataType(DataType.Password), Compare(nameof(Password))]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name = "Roles")]
+        [Display(Name = "Role")]
         [Required, MinLength(1)]
         public int[] RoleIds { get; set; }
         public IEnumerable<SelectListItem> Roles { get; set; }

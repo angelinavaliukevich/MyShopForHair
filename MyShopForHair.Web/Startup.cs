@@ -6,8 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyShopForHair.Core.Interfaces;
+using MyShopForHair.Core.Services;
 using MyShopForHair.Infrastructure.Data;
 using MyShopForHair.Infrastructure.Data.Repositories;
+using MyShopForHair.Web.Interfaces;
+using MyShopForHair.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +35,10 @@ namespace MyShopForHair.Web
             services.AddControllersWithViews();
             
             services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
+
+            services.AddScoped<IBrandViewModelService, BrandViewModelService>();
+
+            services.AddScoped<IBrandService, BrandService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
