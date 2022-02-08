@@ -13,5 +13,6 @@ namespace MyShopForHair.Web.Interfaces
         void Edit(CriteriaViewModel criteriaViewModel);
         IEnumerable<CriteriaViewModel> GetAll();
         CriteriaViewModel GetById(int id);
+        CriteriaViewModel GetEmpty();
     }
 }

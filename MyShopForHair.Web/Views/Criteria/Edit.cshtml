@@ -1,8 +1,7 @@
-﻿@model BrandViewModel
+﻿@model CriteriaViewModel
 
-<form asp-controller="Brand" asp-action="Edit" asp-antiforgery="true" method="post">
+<form asp-controller="Criteria" asp-action="Edit" asp-antiforgery="true" method="post">
     <div>
-        <asp-for="Id">
         <input asp-for="Id" />
         <span asp-validation-for="Id"></span>
     </div>
@@ -10,6 +9,11 @@
         <label asp-for="Name"></label>
         <input asp-for="Name" />
         <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label asp-for="GroupId"></label>
+        <input asp-for="GroupId" />
+        <span asp-validation-for="GroupId"></span>
     </div>
     <button type="submit">Edit</button>
 </form>

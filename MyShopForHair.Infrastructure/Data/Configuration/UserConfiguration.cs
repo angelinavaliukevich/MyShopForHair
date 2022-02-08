@@ -31,6 +31,12 @@ namespace MyShopForHair.Infrastructure.Data.Configuration
             .HasMaxLength(128)
             .IsFixedLength()
             .IsRequired();
+
+           /* builder
+                .Property(p => p.Salt)
+                .HasMaxLength(128)
+                .IsFixedLength()
+                .IsRequired();*/
         }
     }
 }

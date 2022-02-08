@@ -1,4 +1,5 @@
-﻿using MyShopForHair.Core.Entities;
+﻿using Hotel.Core.Specifications;
+using MyShopForHair.Core.Entities;
 using MyShopForHair.Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace MyShopForHair.Core.Services
 
         public User Get(string login)
         {
-            throw new NotImplementedException();
+            return (User)userRepository.Get(new UserByLoginSpecification(login));
         }
     }
 }

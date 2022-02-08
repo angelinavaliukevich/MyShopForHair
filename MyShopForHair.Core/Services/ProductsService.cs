@@ -1,5 +1,6 @@
 ﻿using MyShopForHair.Core.Entities;
 using MyShopForHair.Core.Interfaces;
+using MyShopForHair.Core.Specification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace MyShopForHair.Core.Services
 
         public void Edit(Products products)
         {
-            throw new NotImplementedException();
+            productsRepository.Update(products);
         }
     }
 }

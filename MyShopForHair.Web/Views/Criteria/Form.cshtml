@@ -1,0 +1,13 @@
+﻿@model CriteriaViewModel
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Groups" class="control-label"></label><br />
+        <select asp-for="GroupId" asp-items="Model.Groups"></select>
+        <span asp-validation-for="Groups" class="text-danger"></span>
+        <div class="form-group">
+            <input type="submit" value="Save" />
+        </div>
+    </div>
+</form>
+

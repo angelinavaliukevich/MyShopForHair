@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyShopForHair.Core.Services
 {
-   public class CriteriaService
+   public class CriteriaService : ICriteriaService
     {
         private readonly IRepository<Criteria> criteriaRepository;
         public CriteriaService(IRepository<Criteria> criteriaRepository)
@@ -25,7 +25,7 @@ namespace MyShopForHair.Core.Services
 
         public void Edit(Criteria criteria)
         {
-
+            criteriaRepository.Update(criteria);
         }
     }
 }

@@ -12,10 +12,10 @@ namespace MyShopForHair.Web.Services
     public class ProductsViewModelService : IProductsViewModelService
     {
         private readonly IProductsService productsService;
-        private readonly IRepository<Criteria> criteriaRepository;
-        public ProductsViewModelService(IProductsService productsService, IRepository<Criteria> criteriaRepository)
+        private readonly IRepository<Products> productsRepository;
+        public ProductsViewModelService(IProductsService productsService, IRepository<Products> productsRepository)
         {
-            this.criteriaRepository = criteriaRepository;
+            this.productsRepository = productsRepository;
             this.productsService = productsService;
         }
         public int Add(ProductsViewModel productsViewModel)
@@ -24,7 +24,7 @@ namespace MyShopForHair.Web.Services
         }
         public void Edit(ProductsViewModel productsViewModel)
         {
-            throw new NotImplementedException();
+            productsService.Edit(ConvertToModel(productsViewModel));
         }
 
         public IEnumerable<ProductsViewModel> GetAll()
@@ -34,7 +34,8 @@ namespace MyShopForHair.Web.Services
 
         public ProductsViewModel GetById(int id)
         {
-            return ConvertToViewModel(new Products());
+            var products = productsRepository.Get(id);
+            return products != null ? ConvertToViewModel(products) : null;
         }
 
         private Products ConvertToModel(ProductsViewModel productsViewModel)

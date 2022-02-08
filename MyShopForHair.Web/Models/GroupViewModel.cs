@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MyShopForHair.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,11 @@ namespace MyShopForHair.Web.Models
 
         [Required, Range(1, 255)]
         public string Name { get; set; }
+
         [DataType(DataType.Date)]
         public Criteria Criteria { get; set; }
+
+        
+
     }
 }

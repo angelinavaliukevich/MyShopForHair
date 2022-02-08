@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MyShopForHair.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,12 +17,14 @@ namespace MyShopForHair.Web.Models
         [Required]
         [Range(1, 255)]
         public string Name { get; set; }
-        [DataType(DataType.Date)]
-        [HiddenInput]
-        public int? GroupId { get; set; }
 
-        [Required,Range(1, 255)]
-        public Group Group { get; set; }
         public ICollection<Products> Products { get; set; }
+
+        [Display(Name = "Group")]
+        [Required, MinLength(1)]
+        public int GroupId { get; set; }
+        public IEnumerable<SelectListItem> Groups { get; set; }
+
+
     }
 }

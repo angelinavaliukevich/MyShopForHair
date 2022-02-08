@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MyShopForHair.Core.Entities
 {
@@ -9,5 +10,6 @@ namespace MyShopForHair.Core.Entities
         public string Login { get; set; }
         public string Password { get; set; }
         public ICollection<Role> Roles { get; set; }
+        public ICollection<Member> Members { get; set; }
     }
 }

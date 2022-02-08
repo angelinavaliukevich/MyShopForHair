@@ -1,6 +1,9 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,8 +12,11 @@ using MyShopForHair.Core.Interfaces;
 using MyShopForHair.Core.Services;
 using MyShopForHair.Infrastructure.Data;
 using MyShopForHair.Infrastructure.Data.Repositories;
+using MyShopForHair.Infrastructure.FileSystem;
+using MyShopForHair.Infrastructure.Security;
 using MyShopForHair.Web.Interfaces;
 using MyShopForHair.Web.Models;
+using MyShopForHair.Web.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +45,29 @@ namespace MyShopForHair.Web
             services.AddScoped<IBrandViewModelService, BrandViewModelService>();
 
             services.AddScoped<IBrandService, BrandService>();
+
+            services.AddScoped<ICriteriaViewModelService, CriteriaViewModelService>();
+
+            services.AddScoped <ICriteriaService, CriteriaService>();
+
+            services.AddScoped<IGroupViewModelService, GroupViewModelService>();
+
+            services.AddScoped<IGroupService, GroupService>();
+
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
+
+            services.AddScoped<IUserService, UserService>();
+            // ViewModelServices
+            services.AddScoped<IUserViewModelService, UserViewModelService>();
+            // MVC services
+            services.AddControllersWithViews();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = new PathString("/Account/Index");
+                    options.AccessDeniedPath = new PathString("/Account/Index");
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyShopForHair.Infrastructure.Data;
 
 namespace MyShopForHair.Infrastructure.Migrations
 {
     [DbContext(typeof(CatalogDbContext))]
-    partial class CatalogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220127184457_Add_Group")]
+    partial class Add_Group
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -296,21 +298,6 @@ namespace MyShopForHair.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MyShopForHair.Core.Entities.Member", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("Members");
-                });
-
             modelBuilder.Entity("MyShopForHair.Core.Entities.Products", b =>
                 {
                     b.Property<int>("Id")
@@ -426,25 +413,6 @@ namespace MyShopForHair.Infrastructure.Migrations
                     b.Navigation("Group");
                 });
 
-            modelBuilder.Entity("MyShopForHair.Core.Entities.Member", b =>
-                {
-                    b.HasOne("MyShopForHair.Core.Entities.Role", "Role")
-                        .WithMany("Members")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MyShopForHair.Core.Entities.User", "User")
-                        .WithMany("Members")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Role");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("MyShopForHair.Core.Entities.Products", b =>
                 {
                     b.HasOne("MyShopForHair.Core.Entities.Brand", "Brand")
@@ -479,16 +447,6 @@ namespace MyShopForHair.Infrastructure.Migrations
             modelBuilder.Entity("MyShopForHair.Core.Entities.Group", b =>
                 {
                     b.Navigation("Criterias");
-                });
-
-            modelBuilder.Entity("MyShopForHair.Core.Entities.Role", b =>
-                {
-                    b.Navigation("Members");
-                });
-
-            modelBuilder.Entity("MyShopForHair.Core.Entities.User", b =>
-                {
-                    b.Navigation("Members");
                 });
 #pragma warning restore 612, 618
         }

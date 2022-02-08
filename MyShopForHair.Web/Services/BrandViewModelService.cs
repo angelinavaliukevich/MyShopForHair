@@ -14,19 +14,20 @@ namespace MyShopForHair.Web.Models
     public class BrandViewModelService : IBrandViewModelService
     {
         private readonly IBrandService brandService;
-
-        public BrandViewModelService(IBrandService brandService)
+        private readonly IRepository<Brand> brandRepository;
+        public BrandViewModelService(IBrandService brandService, IRepository<Brand> brandRepository)
         {
             this.brandService = brandService;
+            this.brandRepository = brandRepository;
         }
         public int Add(BrandViewModel brandViewModel)
         {
             return brandService.Add(ConvertToModel(brandViewModel));
         }
-        
+
         public void Edit(BrandViewModel brandViewModel)
         {
-          brandService.Edit(ConvertToModel(brandViewModel));
+            brandService.Edit(ConvertToModel(brandViewModel));
         }
 
         public IEnumerable<BrandViewModel> GetAll()
@@ -46,6 +47,7 @@ namespace MyShopForHair.Web.Models
                 Id = brandViewModel.Id.HasValue ? brandViewModel.Id.Value : 0,
                 Name = brandViewModel.Name
             };
+
         }
     }
 }

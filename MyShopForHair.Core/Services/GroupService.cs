@@ -24,7 +24,7 @@ namespace MyShopForHair.Core.Services
 
         public void Edit(Group group)
         {
-            
+            groupRepository.Update(group);
         }
     }
 }
