@@ -18,6 +18,8 @@ namespace MyShopForHair.Web.Models
         public string Name { get; set; }
 
         [DataType(DataType.Date)]
+        public int CriteriaID { get; set; }
+        public List<SelectListItem> CriteriasAll { get; set; }
         public Criteria Criteria { get; set; }
 
         

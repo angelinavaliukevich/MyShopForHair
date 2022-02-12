@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Criteria";
+}
+
+@model IEnumerable<CriteriaViewModel>
+
+
+<h1 class="text-danger">DELETE</h1>
+<div class="list-group">
+    @foreach (var criteria in Model)
+    {
+        <a asp-action="Delete" asp-route-id="@criteria.Id" class="list-group-item list-group-item-action">@criteria.Name</a>
+    }
+</div>
+

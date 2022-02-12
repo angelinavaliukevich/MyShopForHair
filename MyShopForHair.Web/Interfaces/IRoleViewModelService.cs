@@ -8,8 +8,8 @@ namespace MyShopForHair.Web.Interfaces
 {
     public interface IRoleViewModelService
     {
-        int Add(RoleViewModel roleViewModel);
-        void Edit(RoleViewModel role);
-        RoleViewModel GetById(int id);
+        int Add(RoleModel roleViewModel);
+        void Edit(RoleModel role);
+        RoleModel GetById(int id);
     }
 }

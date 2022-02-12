@@ -1,7 +1,8 @@
-﻿@model CriteriaViewModel
+﻿@model BrandViewModel
 
-<form asp-controller="Criteria" asp-action="Edit" asp-antiforgery="true" method="post">
+<form asp-controller="Brand" asp-action="Edit" asp-antiforgery="true" method="post">
     <div>
+        <asp-for="Id">
         <input asp-for="Id" />
         <span asp-validation-for="Id"></span>
     </div>

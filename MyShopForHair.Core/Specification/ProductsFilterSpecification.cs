@@ -10,9 +10,11 @@ namespace MyShopForHair.Core.Specification
 {
     class ProductsFilterSpecification : ISpecification<Products>
     {
+        public IList<string> Includes =>
+    new List<string> {};
         public string DescriptionSubs { get; set; }
         public int? MaxCount { get; set; }
-        public IQueryable<Products> Applay(IQueryable<Products> query)
+        public IQueryable<Products> Apply(IQueryable<Products> query)
         {
             if (!string.IsNullOrEmpty(DescriptionSubs))
                 query = query.Where(p => p.Description.Contains(DescriptionSubs));

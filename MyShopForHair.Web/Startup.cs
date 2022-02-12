@@ -45,6 +45,10 @@ namespace MyShopForHair.Web
             services.AddScoped<IBrandViewModelService, BrandViewModelService>();
 
             services.AddScoped<IBrandService, BrandService>();
+            
+            services.AddScoped<IProductsViewModelService, ProductsViewModelService>();
+
+            services.AddScoped<IProductsService, ProductsService>();
 
             services.AddScoped<ICriteriaViewModelService, CriteriaViewModelService>();
 
@@ -59,6 +63,8 @@ namespace MyShopForHair.Web
             services.AddScoped<IUserService, UserService>();
             // ViewModelServices
             services.AddScoped<IUserViewModelService, UserViewModelService>();
+
+            services.AddScoped<IRoleModelService, RoleModelService>();
             // MVC services
             services.AddControllersWithViews();
 

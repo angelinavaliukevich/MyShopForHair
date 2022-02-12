@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MyShopForHair.Web.Controllers
 {
-    public class ProductsController
+    public class ProductsController : Controller
     {
         private readonly IProductsViewModelService productsViewModelService;
         private readonly IProductsService productsService;
@@ -21,57 +21,87 @@ namespace MyShopForHair.Web.Controllers
             this.productsService = productsService;
         }
 
-      /*  [HttpGet]
-        public IActionResult Index(int id)
+        public IActionResult Index()
         {
-            var products = productsViewModelService.GetById(id);
-            if (products == null)
+            return View(productsViewModelService.GetAll());
+        }
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            int deleteid = 0;
+            if (id.HasValue)
             {
-                return NotFound();
+                deleteid = id.Value;
+                productsViewModelService.DeleteProducts(deleteid);
             }
+           return View(productsViewModelService.GetAll());
 
-            return View(products);
+        }
+
+        public IActionResult Add()
+        {
+            return View(productsViewModelService.GetEmpty());
+        }
+
+
+        public IActionResult Filter()
+        {
+            return View("Filter", productsViewModelService.GetEmpty());
+        }
+        [HttpPost]
+        public IActionResult Add(ProductsViewModel viewModel)
+        {
+            /*if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }*/
+
+            productsViewModelService.Add(viewModel);
+
+            return RedirectToAction("Index", "Products");
+        }
+
+
+        [HttpPost]
+        public IActionResult Filter(ProductsViewModel viewModel)
+        {
+            /*if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }*/
+
+            IEnumerable<ProductsViewModel> model=productsViewModelService.Filter(viewModel);
+            return View("FilterList", model);
         }
 
         [HttpGet]
-        public IActionResult List()
+        public IActionResult Edit(int? id)
         {
-            var products = productsViewModelService.GetAll();
+            var products = id.HasValue ? productsViewModelService.GetById(id.Value) : new ProductsViewModel();
 
             return View(products);
-
-            [HttpGet]
-            [Authorize(Roles = "admin")]
-            IActionResult Edit(int? id)
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(ProductsViewModel products)
+        {
+            if (!ModelState.IsValid)
             {
-                var products = id.HasValue ? productsViewModelService.GetById(id.Value) : new ProductsViewModel();
-
-                return View(products);
+                return View();
             }
-            [HttpPost]
-            [ValidateAntiForgeryToken]
-            [Authorize(Roles = "admin")]
-           IActionResult Edit(ProductsViewModel products)
+
+            var id = products.Id;
+
+            if (id == null)
             {
-                if (!ModelState.IsValid)
-                {
-                    return View();
-                }
+                id = productsViewModelService.Add(products);
+            }
+            else
+            {
+                productsViewModelService.Edit(products);
+            }
 
-                var id = products.Id;
-
-                if (id == null || id == 0)
-                {
-                    id = productsViewModelService.Add(products);
-                }
-                else
-                {
-                    productsViewModelService.Edit(products);
-                }
-
-                return RedirectToAction(nameof(Index), new { id });
-            }*/
-
+            return RedirectToAction(nameof(Index), new { id });
         }
     }
-
+}

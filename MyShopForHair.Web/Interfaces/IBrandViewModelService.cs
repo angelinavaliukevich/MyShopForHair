@@ -12,5 +12,10 @@ namespace MyShopForHair.Web.Interfaces
         void Edit(BrandViewModel brandViewModel);
         IEnumerable<BrandViewModel> GetAll();
         BrandViewModel GetById(int id);
+        BrandViewModel GetEmpty();
+
+        void DeleteBrand(int id);
+        
+
     }
 }

@@ -18,12 +18,7 @@ namespace MyShopForHair.Web.Models
         [Range(1, 255)]
         public string Name { get; set; }
 
-        public ICollection<Products> Products { get; set; }
 
-        [Display(Name = "Group")]
-        [Required, MinLength(1)]
-        public int GroupId { get; set; }
-        public IEnumerable<SelectListItem> Groups { get; set; }
 
 
     }

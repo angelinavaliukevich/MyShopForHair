@@ -12,5 +12,7 @@ namespace MyShopForHair.Web.Interfaces
         void Edit(GroupViewModel groupViewModel);
         IEnumerable<GroupViewModel> GetAll();
         GroupViewModel GetById(int id);
+        GroupViewModel GetEmpty();
+        void DeleteGroup(int id);
     }
 }

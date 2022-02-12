@@ -1,20 +1,12 @@
 ﻿@model CriteriaViewModel
 
 <form asp-controller="Criteria" asp-action="Add" asp-antiforgery="true" method="post">
-    <div>
-   
-        <input asp-for="Id" />
-        <span asp-validation-for="Id"></span>
-    </div>
+
     <div>
         <label asp-for="Name"></label>
         <input asp-for="Name" />
         <span asp-validation-for="Name"></span>
     </div>
-    <div>
-        <label asp-for="GroupId"></label>
-        <select asp-for="GroupId" asp-items="Model.Groups"></select>
-        
-    </div>
+    
     <button type="submit">Add</button>
 </form>

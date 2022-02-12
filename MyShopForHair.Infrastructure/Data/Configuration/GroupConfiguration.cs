@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace MyShopForHair.Infrastructure.Data.Configuration
 {
-    internal class CriteriaConfiguration : IEntityTypeConfiguration<Criteria>
+    internal class GroupConfiguration : IEntityTypeConfiguration<Group>
     {
-        public void Configure(EntityTypeBuilder<Criteria> builder)
+        public void Configure(EntityTypeBuilder<Group> builder)
         {
             builder
             .HasKey(p => p.Id);
@@ -21,7 +21,7 @@ namespace MyShopForHair.Infrastructure.Data.Configuration
             .HasMaxLength(50)
             .IsRequired();
 
-           
+        
         }
     }
 }

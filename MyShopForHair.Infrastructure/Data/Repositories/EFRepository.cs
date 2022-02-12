@@ -41,23 +41,30 @@ namespace MyShopForHair.Infrastructure.Data.Repositories
             return entity;
         }
 
-        public IList<TEntity> Get(ISpecification<TEntity> specification)
+        public TEntity Get(ISpecification<TEntity> specification)
+        {
+            return ApplySpecification(DbContext.Set<TEntity>(), specification).FirstOrDefault();
+            //return Apply(DbContext.Set<TEntity>(), specification).FirstOrDefault();
+        }
+
+        /*public IList<TEntity> Get(ISpecification<TEntity> specification)
         {
             return specification
-                .Applay(DbContext.Set<TEntity>())
+                .Apply(DbContext.Set<TEntity>())
                 .AsNoTracking()
                 .ToList();           
-        }
+        }*/
 
         public IList<TEntity> List()
         {
+            //var i=DbContext.Set<TEntity>();
             return DbContext.Set<TEntity>().ToList();
         }
 
         public IList<TEntity> List(ISpecification<TEntity> specification)
         {
             return specification
-               .Applay(DbContext.Set<TEntity>())
+               .Apply(DbContext.Set<TEntity>())
                .AsNoTracking()
                .ToList();
         }
@@ -66,6 +73,19 @@ namespace MyShopForHair.Infrastructure.Data.Repositories
         {
             DbContext.Entry(entity).State = EntityState.Modified;
             DbContext.SaveChanges();
+        }
+
+
+        private IQueryable<TEntity> ApplySpecification(IQueryable<TEntity> source, ISpecification<TEntity> specification)
+        {
+            var result = specification.Apply(source);
+
+            foreach (var include in specification.Includes)
+            {
+                result = result.Include(include);
+            }
+
+            return result.AsNoTracking();
         }
     }
 }

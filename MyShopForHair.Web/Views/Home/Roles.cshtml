@@ -1,0 +1,38 @@
+﻿<table id="roles-table" class="table">
+    <tr>
+        <td>
+            <input class="form-control" placeholder="Name" type="text" id="role-name" />
+        </td>
+        <td>
+            <input class="form-control" placeholder="Description" type="text" id="role-description" />
+        </td>
+        <td>
+            <input type="hidden" id="role-id" value="0" />
+            <button id="save-button" class="btn btn-success">Add</button>
+        </td>
+        <td>
+            <button id="clear-button" class="btn btn-secondary">Clear</button>
+        </td>
+    </tr>
+</table>
+
+<div id="error-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Error</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="error-modal-message"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+}

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MyShopForHair.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace MyShopForHair.Web.Models
         [Required, Range(1, 255)]
         public string Name { get; set; }
 
-        [DataType(DataType.Date)]
+        [Required, Range(1, 200000)]
         public string Description { get; set; }
 
         public ushort Price { get; set; }
@@ -25,8 +26,24 @@ namespace MyShopForHair.Web.Models
         public int BrandId { get; set; }
 
         [Required, Range(1, 255)]
-        public Brand Brand { get; set; }
 
-        public ICollection<Criteria> Criterias { get; set; }
+        public int GroupId { get; set; }
+
+        [Required, Range(1, 255)]
+        public int CriteriaId { get; set; }
+
+        [Required, Range(1, 255)]
+
+
+        public ICollection<Criteria> Criterias { get; internal set; }
+        public List<SelectListItem> Brands { get; internal set; }
+        public List<SelectListItem> GroupsAll { get; internal set; }
+        public List<SelectListItem> BrandsAll { get; internal set; }
+        public List<SelectListItem> CriterialAll { get; internal set; }
+
+
+        public Brand Brand { get; internal set; }
+        public Criteria Criteria { get; internal set; }
+        public Group Group { get; internal set; }
     }
 }

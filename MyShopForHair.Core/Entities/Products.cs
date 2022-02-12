@@ -9,7 +9,10 @@ namespace MyShopForHair.Core.Entities
         public string Description { get; set; }
         public ushort Price { get; set; }
         public int BrandId { get; set; }
-        public Brand Brand { get; set; }
+        //public Brand Brand { get; set; }
+        public int GroupId { get; set; }
+
+        
         public ICollection<Criteria> Criterias { get; set; }
     }
 }

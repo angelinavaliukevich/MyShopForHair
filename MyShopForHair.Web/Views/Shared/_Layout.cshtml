@@ -25,15 +25,55 @@
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Brand" asp-action="Add">Brand</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Roles">Roles</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Criteria" asp-action="Add">Criteria</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Brand
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-controller="Brand" asp-action="Index">List</a></li>
+                                <li><a class="dropdown-item" asp-controller="Brand" asp-action="Add">Add</a></li>
+                                <li><a class="dropdown-item" asp-controller="Brand" asp-action="Delete">Delete</a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Group" asp-action="Add">Group</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Criteria
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-controller="Criteria" asp-action="Index">List</a></li>
+                                <li><a class="dropdown-item" asp-controller="Criteria" asp-action="Add">Add</a></li>
+                                <li><a class="dropdown-item" asp-controller="Criteria" asp-action="Delete">Delete</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Group
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-controller="Group" asp-action="Index">List</a></li>
+                                <li><a class="dropdown-item" asp-controller="Group" asp-action="Add">Add</a></li>
+                                <li><a class="dropdown-item" asp-controller="Group" asp-action="Delete">Delete</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Product
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-controller="Products" asp-action="Index">List</a></li>
+                                <li><a class="dropdown-item" asp-controller="Products" asp-action="Add">Add</a></li>
+                                <li><a class="dropdown-item" asp-controller="Products" asp-action="Delete">Delete</a></li>
+                                <li><a class="dropdown-item" asp-controller="Products" asp-action="Filter">Filter</a></li>
+                            </ul>
                         </li>
                     </ul>
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>

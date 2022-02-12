@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Group";
+}
+
+@model IEnumerable<GroupViewModel>
+
+
+<h1 class="text-danger">DELETE</h1>
+<div class="list-group">
+    @foreach (var group in Model)
+    {
+        <a asp-action="Delete" asp-route-id="@group.Id" class="list-group-item list-group-item-action">@group.Name</a>
+    }
+</div>
+

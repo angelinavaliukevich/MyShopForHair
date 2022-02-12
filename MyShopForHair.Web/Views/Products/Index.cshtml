@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Products";
+}
+
+@model IEnumerable<ProductsViewModel>
+
+    <h1>Products</h1>
+<a asp-action="Delete" class="btn btn-danger">Delete</a>
+<a asp-action="Add" class="btn btn-danger">Add</a>
+
+
+<div class="list-group">
+    @foreach (var products in Model)
+    {
+    <a asp-action="Index" asp-route-id="@products.Id" class="list-group-item list-group-item-action">
+        @products.Name
+            (Brand: @products.Brand.Name) @products.Group.Name  
+        <br>Price:@products.Price
+        <br>Description:@products.Description
+
+        </a>
+    }
+</div>
+

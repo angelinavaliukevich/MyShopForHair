@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace MyShopForHair.Core.Interfaces
 {
-   public interface ISpecification <TEntity>
-        where TEntity : class
+    public interface ISpecification<T>
+        where T : class
     {
-        IQueryable<TEntity> Applay(IQueryable<TEntity> query);
+        IList<string> Includes { get; }
+
+        IQueryable<T> Apply(IQueryable<T> query);
     }
 }

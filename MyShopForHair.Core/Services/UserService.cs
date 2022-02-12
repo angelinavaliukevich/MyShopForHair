@@ -34,7 +34,9 @@ namespace MyShopForHair.Core.Services
 
         public User Get(string login)
         {
-            return (User)userRepository.Get(new UserByLoginSpecification(login));
+            UserByLoginSpecification u = new UserByLoginSpecification(login);
+            User user = userRepository.Get(u);
+            return user;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MyShopForHair.Core.Entities;
 using MyShopForHair.Core.Interfaces;
 using MyShopForHair.Core.Services;
@@ -20,6 +21,9 @@ namespace MyShopForHair.Web.Models
             this.brandService = brandService;
             this.brandRepository = brandRepository;
         }
+
+
+
         public int Add(BrandViewModel brandViewModel)
         {
             return brandService.Add(ConvertToModel(brandViewModel));
@@ -30,14 +34,37 @@ namespace MyShopForHair.Web.Models
             brandService.Edit(ConvertToModel(brandViewModel));
         }
 
+
+        public void DeleteBrand(int id)
+        {
+            Brand brand = brandRepository.List().Where(i => i.Id == id).FirstOrDefault(); 
+            if (brand!=null)
+            brandRepository.Delete(brand);
+            //return null;
+        }
+
         public IEnumerable<BrandViewModel> GetAll()
         {
-            throw new NotImplementedException();
+            return brandRepository.List().Select(ConvertToViewModel);
+        }
+
+        public BrandViewModel GetEmpty()
+        {
+            return ConvertToViewModel(new Brand());
         }
 
         public BrandViewModel GetById(int id)
         {
-            throw new NotImplementedException();
+            var brand = brandRepository.Get(id);
+            return brand != null ? ConvertToViewModel(brand) : null;
+        }
+        private BrandViewModel ConvertToViewModel(Brand brand)
+        {
+            return new BrandViewModel
+            {
+                Id = brand.Id,
+                Name = brand.Name,
+            };
         }
 
         private Brand ConvertToModel(BrandViewModel brandViewModel)

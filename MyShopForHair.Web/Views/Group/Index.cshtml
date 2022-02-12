@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Groups";
+}
+
+@model IEnumerable<GroupViewModel>
+
+<a asp-action="Delete" class="btn btn-danger" >Delete</a>
+<a asp-action="Add" class="btn btn-danger">Add</a>
+
+
+<div class="list-group">
+    @foreach (var g in Model)
+    {
+        <a asp-action="Index" asp-route-id="@g.Id" 
+           class="list-group-item list-group-item-action">@g.Name </a>
+    }
+</div>
+

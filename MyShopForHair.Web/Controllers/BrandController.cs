@@ -18,9 +18,28 @@ namespace MyShopForHair.Web.Controllers
             this.brandViewModelService = brandViewModelService;
         }
 
+
+
+
+        public IActionResult Delete(int? id)
+        {
+            if (id.HasValue)
+            {
+                brandViewModelService.DeleteBrand(id.Value);
+            }
+
+            return View(brandViewModelService.GetAll());
+        }
+
+        public IActionResult Index()
+        {
+            return View(brandViewModelService.GetAll());
+        }
+
         public IActionResult Add()
         {
-            return View();
+            return View(brandViewModelService.GetEmpty());
+            
         }
 
         [HttpPost]
@@ -28,12 +47,12 @@ namespace MyShopForHair.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                View(viewModel);
+                return View(viewModel);
             }
 
             brandViewModelService.Add(viewModel);
 
-            return RedirectToAction("Add", "Home");
+            return RedirectToAction("Index", "Brand");
         }
         [HttpGet]
         public IActionResult Edit(int? id)

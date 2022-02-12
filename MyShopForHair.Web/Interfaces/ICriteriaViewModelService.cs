@@ -14,5 +14,6 @@ namespace MyShopForHair.Web.Interfaces
         IEnumerable<CriteriaViewModel> GetAll();
         CriteriaViewModel GetById(int id);
         CriteriaViewModel GetEmpty();
+        void DeleteCriteria(int id);
     }
 }

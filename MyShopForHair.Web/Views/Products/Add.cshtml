@@ -1,0 +1,32 @@
+﻿@model ProductsViewModel
+
+<form asp-controller="Products" asp-action="Add" asp-antiforgery="true" method="post">
+    <div>
+        <label asp-for="Name"></label><br />
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label asp-for="Description"></label><br />
+        <input asp-for="Description" />
+        <span asp-validation-for="Description"></span>
+    </div>
+    <div>
+        <label asp-for="Price"></label><br />
+        <input asp-for="Price" />
+        <span asp-validation-for="Price"></span>
+    </div>
+    <div>
+        <label asp-for="BrandId">Brands</label><br />
+        <select asp-for="BrandId" asp-items="Model.BrandsAll"></select>
+        <span asp-validation-for="BrandId"></span>
+    </div>
+    <div>
+        <label asp-for="GroupId">Group</label><br />
+        <select asp-for="GroupId" asp-items="Model.GroupsAll"></select>
+        <span asp-validation-for="GroupId"></span>
+    </div>
+    <button type="submit">Add</button>
+</form>
+
+

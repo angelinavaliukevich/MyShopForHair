@@ -15,6 +15,23 @@ namespace MyShopForHair.Web.Controllers
         {
             this.criteriaViewModelService = criteriaViewModelService;
         }
+
+        public IActionResult Index()
+        {
+            return View(criteriaViewModelService.GetAll());
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            int deleteid = 0;
+            if (id.HasValue)
+            {
+                deleteid = id.Value;
+
+                criteriaViewModelService.DeleteCriteria(deleteid);
+            }
+            return View(criteriaViewModelService.GetAll());
+        }
         public IActionResult Add()
         {
             return View(criteriaViewModelService.GetEmpty());
@@ -23,14 +40,10 @@ namespace MyShopForHair.Web.Controllers
         [HttpPost]
         public IActionResult Add(CriteriaViewModel viewModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(viewModel);
-            }
-
+            
             criteriaViewModelService.Add(viewModel);
 
-            return RedirectToAction("Add", "Home");
+            return RedirectToAction("Index", "Criteria");
         }
         [HttpGet]
         public IActionResult Edit(int? id)

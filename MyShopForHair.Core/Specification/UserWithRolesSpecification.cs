@@ -20,7 +20,7 @@ namespace MyShopForHair.Core.Specification
         }
 
 
-        public IQueryable<User> Applay(IQueryable<User> query)
+        public IQueryable<User> Apply(IQueryable<User> query)
         {
             return query.Where(i => i.Id == id);
         }

@@ -10,6 +10,8 @@ namespace MyShopForHair.Core.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public ICollection<Criteria> Criterias { get; set; }
+
+        public int CriteriaID { get; set; }
+
     }
 }

@@ -40,7 +40,7 @@ namespace MyShopForHair.Web.Controllers
             }
 
             var user = userService.Get(signIn.Login);
-         //   if (user == null || !passwordHasher.IsValid(signIn.Password, user.Password, user.Salt))
+            if (user == null || !passwordHasher.IsValid(signIn.Password, user.Password, user.Salt))
             {
                 ModelState.AddModelError(string.Empty, "Invalid login or password");
                 return View(signIn);
@@ -53,15 +53,49 @@ namespace MyShopForHair.Web.Controllers
             claims.AddRange(user.Members.Select(m => new Claim(ClaimTypes.Role, m.Role.Name)));
 
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+            var cp = new ClaimsPrincipal(claimsIdentity);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, cp);
 
             return string.IsNullOrEmpty(returnUrl)
                 ? RedirectToAction(nameof(Index), "Home")
                 : Redirect(returnUrl);
         }
 
+        [HttpGet]
+        public IActionResult Profile(int? id)
+        {
+            return View(userViewModelService.GetEmpty());
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Profile(UserViewModel user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            int? id = user.Id;
+
+            if (id == null || id == 0)
+            {
+                id = userViewModelService.Add(user);
+            }
+            else
+            {
+                userViewModelService.Edit(user);
+            }
+
+            return RedirectToAction(nameof(Index), "Home");
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction(nameof(Index), "Home");
+        }
 
     }
 }

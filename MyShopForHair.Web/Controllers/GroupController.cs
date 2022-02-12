@@ -15,22 +15,38 @@ namespace MyShopForHair.Web.Controllers
         {
             this.groupViewModelService = groupViewModelService;
         }
+
+        public IActionResult Index()
+        {
+            return View(groupViewModelService.GetAll());
+        }
+        public IActionResult Delete(int? id)
+        {
+            int deleteid = 0;
+            if (id.HasValue)
+            {
+                deleteid = id.Value;
+
+               groupViewModelService.DeleteGroup(deleteid);
+            }
+            return View(groupViewModelService.GetAll());
+        }
         public IActionResult Add()
         {
-            return View();
+            return View(groupViewModelService.GetEmpty());
         }
 
         [HttpPost]
         public IActionResult Add(GroupViewModel viewModel)
         {
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 View(viewModel);
-            }
+            }*/
 
             groupViewModelService.Add(viewModel);
 
-            return RedirectToAction("Add", "Home");
+            return RedirectToAction("Index", "Group");
         }
         [HttpGet]
         public IActionResult Edit(int? id)

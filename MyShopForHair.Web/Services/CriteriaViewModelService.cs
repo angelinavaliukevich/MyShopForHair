@@ -14,18 +14,24 @@ namespace MyShopForHair.Web.Services
     {
         private readonly ICriteriaService criteriaService;
         private readonly IRepository<Criteria> criteriaRepository;
-        private readonly IRepository<Group> groupRepository;
-        public CriteriaViewModelService(ICriteriaService criteriaService, IRepository<Criteria> criteriaRepository, IRepository<Group> groupRepository)
+        //private readonly IRepository<Group> groupRepository;
+        public CriteriaViewModelService(ICriteriaService criteriaService, IRepository<Criteria> criteriaRepository)
         {
             this.criteriaService = criteriaService;
             this.criteriaRepository = criteriaRepository;
-            this.groupRepository = groupRepository;
+            
         }
         public int Add(CriteriaViewModel criteriaViewModel)
         {
             return criteriaService.Add(ConvertToModel(criteriaViewModel));
         }
-        
+
+        public void DeleteCriteria(int id) {
+            Criteria brand = criteriaRepository.List().Where(i => i.Id == id).FirstOrDefault();
+            if (brand != null)
+                criteriaRepository.Delete(brand);
+        }
+
         public void Edit(CriteriaViewModel criteriaViewModel)
         {
             criteriaService.Edit(ConvertToModel(criteriaViewModel));
@@ -33,7 +39,8 @@ namespace MyShopForHair.Web.Services
 
         public IEnumerable<CriteriaViewModel> GetAll()
         {
-            return criteriaRepository.List().Select(ConvertToViewModel);
+            IList<Criteria> l = criteriaRepository.List();
+            return l.Select(ConvertToViewModel);
         }
 
         public CriteriaViewModel GetById(int id)
@@ -53,8 +60,8 @@ namespace MyShopForHair.Web.Services
             {
                 Id = criteria.Id,
                 Name = criteria.Name,
-                GroupId = criteria.GroupId,
-                Groups = groupRepository.List().Select(g => new SelectListItem(g.Name, g.Id.ToString(), criteria.GroupId ==  g.Id)).ToList()
+               
+                
             };
         }
 
@@ -64,9 +71,7 @@ namespace MyShopForHair.Web.Services
             {
                 Id = criteriaViewModel.Id.HasValue ? criteriaViewModel.Id.Value : 0,
                 Name = criteriaViewModel.Name,
-                GroupId = criteriaViewModel.GroupId,
-
-
+              
             };
         }
 
