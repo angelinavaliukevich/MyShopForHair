@@ -27,7 +27,8 @@ namespace MyShopForHair.Web.Services
         }
 
         public void DeleteCriteria(int id) {
-            Criteria brand = criteriaRepository.List().Where(i => i.Id == id).FirstOrDefault();
+            Criteria brand = criteriaRepository.Get(id);
+            //List().Where(i => i.Id == id).FirstOrDefault();//
             if (brand != null)
                 criteriaRepository.Delete(brand);
         }

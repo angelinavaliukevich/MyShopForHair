@@ -11,5 +11,6 @@ namespace MyShopForHair.Core.Interfaces
     {
         int Add(Products products);
         void Edit(Products products);
+        IEnumerable<Products> Filter(Products products);
     }
 }

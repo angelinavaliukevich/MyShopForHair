@@ -10,6 +10,7 @@ namespace MyShopForHair.Web.Interfaces
     {
         int Add(ProductsViewModel productsViewModel);
         IEnumerable<ProductsViewModel> Filter(ProductsViewModel productsViewModel);
+
         void Edit(ProductsViewModel productsViewModel);
         IEnumerable<ProductsViewModel> GetAll();
         ProductsViewModel GetById(int id);

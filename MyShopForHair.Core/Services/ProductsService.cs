@@ -30,5 +30,10 @@ namespace MyShopForHair.Core.Services
         {
             productsRepository.Update(products);
         }
+
+        public IEnumerable<Products> Filter(Products products)
+        {
+            return productsRepository.List(new ProductsFilterSpecification(products));
+        }
     }
 }

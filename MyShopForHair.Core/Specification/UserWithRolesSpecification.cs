@@ -24,5 +24,6 @@ namespace MyShopForHair.Core.Specification
         {
             return query.Where(i => i.Id == id);
         }
+
     }
 }

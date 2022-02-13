@@ -17,6 +17,7 @@ namespace MyShopForHair.Web.Services
         private readonly IRepository<Brand> brandRepository;
         private readonly IRepository<Group> groupRepository;
         private readonly IRepository<Criteria> criteriaRepository;
+        
         public ProductsViewModelService(IProductsService productsService,
             IRepository<Products> productsRepository,
             IRepository<Brand> brandRepository,
@@ -29,6 +30,7 @@ namespace MyShopForHair.Web.Services
             this.brandRepository = brandRepository;
             this.groupRepository = groupRepository;
             this.criteriaRepository = criteriaRepository;
+            
         }
         public int Add(ProductsViewModel productsViewModel)
         {
@@ -45,25 +47,24 @@ namespace MyShopForHair.Web.Services
             return l.Select(ConvertToViewModel);
         }
 
-        public IEnumerable<ProductsViewModel> Filter(ProductsViewModel productsViewModel)
+       public IEnumerable<ProductsViewModel> Filter(ProductsViewModel pm)
         {
-            IList<ProductsViewModel> l = productsRepository.List().Select(ConvertToViewModel).ToList();
+            
 
-            if (productsViewModel.Name != null)
-                l = l.Where(i => i.Name.Contains(i.Name)).ToList();
-            if (productsViewModel.Description != null)
-                l = l.Where(i => i.Description.Contains(i.Description)).ToList();
-            if (productsViewModel.Price > 0)
-                l = l.Where(i => i.Price == productsViewModel.Price).ToList();
-            if (productsViewModel.BrandId >0)
-                l = l.Where(i => i.BrandId == productsViewModel.BrandId).ToList();
-            if (productsViewModel.GroupId >0)
-                l = l.Where(i => i.GroupId == productsViewModel.GroupId).ToList();
-            if (productsViewModel.CriteriaId >0)
-                l = l.Where(i => i.Criteria.Id == productsViewModel.CriteriaId).ToList();
-
-
-            return l;
+            Products tmp = new Products();
+            tmp.Name = pm.Name;
+            tmp.Description = pm.Description;
+            tmp.Price = pm.Price;
+            tmp.BrandId = pm.BrandId;
+            tmp.GroupId = pm.GroupId;
+            tmp.CriteriaId = pm.CriteriaId;
+            IEnumerable<Products> ps= productsService.Filter(tmp);
+            IList<ProductsViewModel> pmNew= new List<ProductsViewModel> {};
+            foreach (Products p in ps) {
+                ProductsViewModel pm2 = ConvertToViewModel(p);
+                pmNew.Add(pm2);
+            }
+            return pmNew;
         }
 
         public ProductsViewModel GetEmpty()

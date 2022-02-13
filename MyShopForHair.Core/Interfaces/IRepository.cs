@@ -19,5 +19,7 @@ namespace MyShopForHair.Core.Interfaces
         void Update(TEntity entity);
         void Delete(TEntity entity);
 
+
+
     }
 }

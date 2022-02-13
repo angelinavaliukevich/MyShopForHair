@@ -20,5 +20,6 @@ namespace Hotel.Core.Specifications
         {
             return query.Where(i => i.Login == login);
         }
+        
     }
 }

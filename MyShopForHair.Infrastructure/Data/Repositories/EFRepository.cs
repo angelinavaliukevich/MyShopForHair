@@ -76,6 +76,8 @@ namespace MyShopForHair.Infrastructure.Data.Repositories
         }
 
 
+        
+
         private IQueryable<TEntity> ApplySpecification(IQueryable<TEntity> source, ISpecification<TEntity> specification)
         {
             var result = specification.Apply(source);
@@ -87,6 +89,8 @@ namespace MyShopForHair.Infrastructure.Data.Repositories
 
             return result.AsNoTracking();
         }
+
+        
     }
 }
 

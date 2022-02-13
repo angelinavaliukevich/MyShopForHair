@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MyShopForHair.Core.Entities;
 using MyShopForHair.Core.Interfaces;
 using MyShopForHair.Web.Interfaces;
 using MyShopForHair.Web.Models;
@@ -63,16 +64,17 @@ namespace MyShopForHair.Web.Controllers
 
 
         [HttpPost]
-        public IActionResult Filter(ProductsViewModel viewModel)
+       public IActionResult Filter(ProductsViewModel viewModel)
         {
             /*if (!ModelState.IsValid)
             {
                 return View(viewModel);
             }*/
 
-            IEnumerable<ProductsViewModel> model=productsViewModelService.Filter(viewModel);
+           IEnumerable<ProductsViewModel> model=productsViewModelService.Filter(viewModel);
             return View("FilterList", model);
         }
+       
 
         [HttpGet]
         public IActionResult Edit(int? id)

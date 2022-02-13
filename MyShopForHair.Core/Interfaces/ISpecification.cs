@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyShopForHair.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ namespace MyShopForHair.Core.Interfaces
         IList<string> Includes { get; }
 
         IQueryable<T> Apply(IQueryable<T> query);
+        //IEnumerable<T> Filter(T ViewModel);
     }
 }
