@@ -60,11 +60,11 @@ namespace MyShopForHair.Web
 
             services.AddScoped<IPasswordHasher, PasswordHasher>();
 
-            services.AddScoped<IUserService, UserService>();
+           // services.AddScoped<IUserService, UserService>();
             // ViewModelServices
-            services.AddScoped<IUserViewModelService, UserViewModelService>();
+           // services.AddScoped<IUserViewModelService, UserViewModelService>();
 
-            services.AddScoped<IRoleModelService, RoleModelService>();
+           // services.AddScoped<IRoleModelService, RoleModelService>();
             // MVC services
             services.AddControllersWithViews();
 
